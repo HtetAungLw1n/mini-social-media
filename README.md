@@ -1,2 +1,1 @@
-# php-mysocial
-mini-social media
+# mini-social media
