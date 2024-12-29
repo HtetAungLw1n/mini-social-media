@@ -1,3 +1,22 @@
+<?php
+session_start();
+require "./config/config.php";
+
+if (empty($_SESSION['user_id']) && empty($_SESSION['logged_in'])) {
+    header("Location: login.php");
+};
+
+$stmt = $pdo->prepare("SELECT * FROM posts ORDER BY id DESC");
+$stmt->execute();
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id=" . $_SESSION['user_id']);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,15 +62,6 @@
                             </a>
                         </li>
 
-                        <!-- <li class="py-3 flex hover:bg-stone-800 rounded-lg transition duration-150">
-                            <a href="" class="flex items-center hover:text-zinc-300 transition duration-150">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M5 19q-.425 0-.712-.288T4 18t.288-.712T5 17h1v-7q0-2.075 1.25-3.687T10.5 4.2v-.7q0-.625.438-1.062T12 2t1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h1q.425 0 .713.288T20 18t-.288.713T19 19zm7 3q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-4-5h8v-7q0-1.65-1.175-2.825T12 6T9.175 7.175T8 10z" />
-                                </svg>
-                                <p class="text-lg font-medium ml-3">Notification</p>
-                            </a>
-                        </li> -->
-
                         <li class="py-3 pl-3 hover:bg-stone-800 rounded-lg transition duration-150">
                             <a href="" class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -64,9 +74,9 @@
                 </div>
 
                 <div>
-                    <a href="" class="pl-3 flex items-center">
-                        <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                        <p class="text-lg font-medium ml-3">Username</p>
+                    <a href="#userdetail" class="pl-3 flex items-center">
+                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-9 h-9 rounded-full">
+                        <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
                     </a>
                 </div>
             </div>
