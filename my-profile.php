@@ -6,7 +6,8 @@ if (empty($_SESSION['user_id']) && empty($_SESSION['logged_in'])) {
     header("Location: login.php");
 };
 
-$stmt = $pdo->prepare("SELECT * FROM posts ORDER BY id DESC");
+$stmt = $pdo->prepare("SELECT * FROM posts WHERE user_id = :user_id ORDER BY id DESC");
+$stmt->bindValue(':user_id', $_SESSION['user_id']);
 $stmt->execute();
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,7 +41,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <section class="w-3/4 ml-80 flex flex-col items-center">
 
                 <!-- header -->
-                <header class="text-center text-lg font-medium pt-3">For You</header>
+                <header class="text-center text-lg font-medium pt-3">Your Profile</header>
 
                 <!-- posts -->
                 <div class="w-1/2">
@@ -137,66 +138,35 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <!-- second section start -->
             <section class="w-1/4 pt-14 mr-28">
+
+                <!-- search start -->
                 <div class="flex items-center h-max bg-stone-800 rounded-full px-3 py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l5.6 5.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-5.6-5.6q-.75.6-1.725.95T9.5 16m0-2q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14" />
                     </svg>
                     <input type="text" class="w-2/3 h-10 bg-stone-800 rounded-lg px-3 outline-none" placeholder="Search">
                 </div>
+                <!-- search end -->
 
                 <hr class="border-stone-500 mt-5">
 
-                <div class="h-96 bg-stone-800 mt-5 rounded-xl px-5 py-3">
-                    <div class="text-lg font-medium">Following</div>
-                    <div class="flex flex-col overflow-y-auto h-5/6 mt-3">
-
-                        <!-- user start -->
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
+                <!-- profile card start  -->
+                <div class="max-h-full bg-stone-800 mt-5 px-5 py-5 rounded-xl">
+                    <div class="flex flex-col items-center">
+                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="pp" class="px-auto rounded-xl max-w-1/2 w-1/2 max-h-1/2">
+                        <div class="mt-5 text-center ">
+                            <p class="text-lg font-bold"><?php echo $user['name'] ?></p>
+                            <p class="text-lg font-bold"><?php echo $user['email'] ?></p>
+                        </div>
+                        <div class="mt-5 text-center flex">
+                            <a href="edit-profile.php">
+                                <div class="font-semibold min-w-28 px-5 py-3 bg-stone-700 rounded-full mr-3 hover:bg-stone-600 transition duration-200">Edit</div>
+                            </a>
+                            <a href="logout.php">
+                                <div class="font-semibold min-w-28 px-5 py-3 bg-red-700 rounded-full ml-3 hover:bg-red-600 transition duration-200">Logout</div>
                             </a>
                         </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <!-- user end -->
-
                     </div>
-
                 </div>
             </section>
             <!-- second section end -->
