@@ -37,7 +37,7 @@ if (!empty($_POST)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini Social Media | Sign In Page</title>
+  <title>Mini Social Media | Sign Up Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
@@ -46,11 +46,11 @@ if (!empty($_POST)) {
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h1 class="text-center text-4xl/10 font-bold text-violet-600 tracking-wider">MINI SOCIAL MEDIA</h1>
-      <h2 class="text-center text-xl tracking-tight text-gray-900 mt-5">Sign in to your account</h2>
+      <h2 class="text-center text-xl tracking-tight text-gray-900 mt-5">Sign up to your account</h2>
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="sign-in.php" method="POST">
+      <form class="space-y-6" action="sign-up.php" method="POST">
 
         <div>
           <label for="name" class="block text-sm/6 font-medium text-gray-900">Your name</label>
@@ -74,7 +74,7 @@ if (!empty($_POST)) {
         </div>
 
         <div>
-          <button type="submit" class="transition duration-100 mt-7 flex w-full justify-center rounded-md bg-violet-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-violet-700 hover:ease-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600">Sign in</button>
+          <button type="submit" class="transition duration-100 mt-7 flex w-full justify-center rounded-md bg-violet-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-violet-700 hover:ease-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600">Sign up</button>
         </div>
       </form>
 

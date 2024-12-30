@@ -75,7 +75,7 @@ if (!empty($_POST)) {
 
             <p class="mt-7 text-center text-sm/6 text-gray-500">
                 create a account?
-                <a href="sign-in.php" class="font-semibold text-violet-600 hover:text-violet-500">Sign in</a>
+                <a href="sign-up.php" class="font-semibold text-violet-600 hover:text-violet-500">Sign up</a>
             </p>
         </div>
     </div>
