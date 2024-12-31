@@ -79,7 +79,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                             <a href="edit-post.php?id=<?php echo $postId ?>">
                                                 <div class="px-5 py-2 hover:bg-stone-600 rounded-lg transition ease-in-out duration-300">Edit</div>
                                             </a>
-                                            <a href="delete-post.php?id=<?php echo $postId ?>">
+                                            <a href="delete-post.php?id=<?php echo $postId ?>" onclick="return confirm('Are you sure you want to delete this post?')">
                                                 <div class="px-5 py-2 hover:bg-stone-600 rounded-lg transition ease-in-out duration-300">Delete
                                                 </div>
                                             </a>
