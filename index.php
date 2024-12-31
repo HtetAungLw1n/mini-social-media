@@ -6,14 +6,18 @@ if (empty($_SESSION['user_id']) && empty($_SESSION['logged_in'])) {
     header("Location: login.php");
 };
 
-$stmt = $pdo->prepare("SELECT * FROM posts ORDER BY id DESC");
-$stmt->execute();
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmtForPosts = $pdo->prepare("SELECT * FROM posts ORDER BY id DESC");
+$stmtForPosts->execute();
+$posts = $stmtForPosts->fetchAll(PDO::FETCH_ASSOC);
+
+$stmtForUsers = $pdo->prepare("SELECT * FROM users ORDER BY id DESC");
+$stmtForUsers->execute();
+$users = $stmtForUsers->fetchAll(PDO::FETCH_ASSOC);
 
 
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id=" . $_SESSION['user_id']);
-$stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmtUser = $pdo->prepare("SELECT * FROM users WHERE id=" . $_SESSION['user_id']);
+$stmtUser->execute();
+$user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -147,52 +151,23 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <hr class="border-stone-500 mt-5">
 
                 <div class="h-96 bg-stone-800 mt-5 rounded-xl px-5 py-3">
-                    <div class="text-lg font-medium">Following</div>
+                    <div class="text-xl font-medium">Friends</div>
                     <div class="flex flex-col overflow-y-auto h-5/6 mt-3">
 
-                        <!-- user start -->
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
+
+                        <?php
+                        foreach ($users as $user) {
+                        ?>
+                            <div class="py-3">
+                                <a href="" class="flex items-center">
+                                    <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-9 h-9 rounded-full">
+                                    <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
+                                </a>
+                            </div>
+                        <?php
+                        }
+
+                        ?>
                         <!-- user end -->
 
                     </div>
