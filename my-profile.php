@@ -38,10 +38,10 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="flex w-full">
 
             <!-- main content start -->
-            <section class="w-3/4 ml-80 flex flex-col items-center">
+            <section class="w-3/4 ml-96 flex flex-col items-center">
 
                 <!-- header -->
-                <header class="text-center text-lg font-medium pt-3">Your Profile</header>
+                <header class="text-center text-lg font-medium pt-5">Your Profile</header>
 
                 <!-- posts -->
                 <div class="w-1/2">
@@ -137,7 +137,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <!-- main content end -->
 
             <!-- second section start -->
-            <section class="w-1/4 pt-14 mr-28">
+            <section class="w-1/4 pt-16 mr-28">
 
                 <!-- search start -->
                 <div class="flex items-center h-max bg-stone-800 rounded-full px-3 py-1">
@@ -153,7 +153,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <!-- profile card start  -->
                 <div class="max-h-full bg-stone-800 mt-5 px-5 py-5 rounded-xl">
                     <div class="flex flex-col items-center">
-                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="pp" class="px-auto rounded-xl max-w-1/2 w-1/2 max-h-1/2">
+                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="pp" class="px-auto rounded-full max-w-1/2 w-1/2 max-h-1/2">
                         <div class="mt-5 text-center ">
                             <p class="text-lg font-bold"><?php echo $user['name'] ?></p>
                             <p class="text-lg font-bold"><?php echo $user['email'] ?></p>
