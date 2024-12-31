@@ -95,14 +95,14 @@ if (!empty($_POST)) {
                 <!-- header -->
                 <header class="text-center text-lg font-medium pt-5">Your Account</header>
 
-                <!-- posts -->
+                <!-- card -->
                 <div class="w-1/3">
 
                     <div class="relative bg-stone-800 rounded-xl my-5">
 
                         <!-- back btn -->
                         <a href="my-profile.php">
-                            <div class="absolute hover:bg-stone-500 px-3 py-2 rounded-r-xl rounded-tl-xl text-sm transition duration-200">
+                            <div class="absolute hover:bg-stone-500 px-3 py-2 rounded-tl-xl text-sm transition duration-200">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="m7.825 13l4.9 4.9q.3.3.288.7t-.313.7q-.3.275-.7.288t-.7-.288l-6.6-6.6q-.15-.15-.213-.325T4.426 12t.063-.375t.212-.325l6.6-6.6q.275-.275.688-.275t.712.275q.3.3.3.713t-.3.712L7.825 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
                                 </svg>

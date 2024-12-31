@@ -160,7 +160,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <div class="mt-5 text-center flex">
                             <a href="edit-profile.php">
-                                <div class="font-semibold min-w-28 px-5 py-3 bg-stone-700 rounded-full mr-3 hover:bg-stone-600 transition duration-200">Edit</div>
+                                <div class="font-semibold min-w-28 px-5 py-3 bg-stone-700 rounded-full mr-3 hover:bg-stone-600 hover:text-violet-300 transition duration-200">Edit</div>
                             </a>
                             <a href="logout.php">
                                 <div class="font-semibold min-w-28 px-5 py-3 bg-red-700 rounded-full ml-3 hover:bg-red-600 transition duration-200">Logout</div>

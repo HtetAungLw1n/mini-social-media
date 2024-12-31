@@ -76,10 +76,10 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                             </svg>
                                         </div>
                                         <div class="absolute text-right -left-24 bg-stone-700 flex rounded-lg opacity-0 mt-2 transition-opacity duration-300 ease-in-out drop-down" id="dropdown<?php echo $postId ?>">
-                                            <a href="edit.php?id=<?php echo $postId ?>">
+                                            <a href="edit-post.php?id=<?php echo $postId ?>">
                                                 <div class="px-5 py-2 hover:bg-stone-600 rounded-lg transition ease-in-out duration-300">Edit</div>
                                             </a>
-                                            <a href="delete.php?id=<?php echo $postId ?>">
+                                            <a href="delete-post.php?id=<?php echo $postId ?>">
                                                 <div class="px-5 py-2 hover:bg-stone-600 rounded-lg transition ease-in-out duration-300">Delete
                                                 </div>
                                             </a>
