@@ -14,6 +14,10 @@ $stmt = $pdo->prepare("SELECT * FROM posts WHERE id=" . $_GET['id']);
 $stmt->execute();
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if ($user['id'] != $post['user_id']) {
+    echo "<script>alert('Sorry,This is not Your Post');window.location.href='index.php';</script>";
+};
+
 if (!empty($_POST)) {
     $status = $_POST['status'];
 
@@ -42,7 +46,6 @@ if (!empty($_POST)) {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
