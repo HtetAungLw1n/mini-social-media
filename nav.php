@@ -44,7 +44,7 @@
 
           <div>
               <a href="my-profile.php" class="pl-3 flex items-center">
-                  <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-9 h-9 rounded-full">
+                  <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-10 h-10 rounded-full object-cover">
                   <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
               </a>
           </div>

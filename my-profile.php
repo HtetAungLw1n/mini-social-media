@@ -63,7 +63,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <!-- author -->
                                 <div class="flex justify-between">
                                     <div class="author px-5 py-3 flex items-center">
-                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="max-w-10 rounded-full">
+                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-10 h-10 rounded-full object-cover">
                                         <div>
                                             <p class="font-medium text-lg ml-3"><?php echo $user['name'] ?></p>
                                             <p class="text-xs font-light ml-3"><?php echo $post['created_at'] ?></p>
@@ -153,7 +153,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <!-- profile card start  -->
                 <div class="max-h-full bg-stone-800 mt-5 px-5 py-5 rounded-xl">
                     <div class="flex flex-col items-center">
-                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="pp" class="px-auto rounded-full max-w-1/2 w-1/2 max-h-1/2">
+                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="pp" class="px-auto w-32 h-32 rounded-full object-cover">
                         <div class="mt-5 text-center ">
                             <p class="text-lg font-bold"><?php echo $user['name'] ?></p>
                             <p class="text-lg font-bold"><?php echo $user['email'] ?></p>

@@ -75,7 +75,7 @@ if (!empty($_POST)) {
                             <!-- porfile and name section -->
                             <div class="flex justify-between">
                                 <div class="author px-5 py-3 flex items-center">
-                                    <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="max-w-10 rounded-full">
+                                    <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="max-w-10 w-10 h-10 max-h-10 rounded-full object-cover">
                                     <div>
                                         <p class="font-medium text-lg ml-3"><?php echo $user['name'] ?></p>
                                     </div>

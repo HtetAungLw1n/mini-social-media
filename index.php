@@ -66,7 +66,7 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
                                 <!-- author -->
                                 <div class="flex justify-between">
                                     <div class="author px-5 py-3 flex items-center">
-                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="max-w-10 rounded-full">
+                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-10 h-10 rounded-full object-cover">
                                         <div>
                                             <p class="font-medium text-lg ml-3"><?php echo $user['name'] ?></p>
                                             <p class="text-xs font-light ml-3"><?php echo $post['created_at'] ?></p>
@@ -150,21 +150,24 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
                 <hr class="border-stone-500 mt-5">
 
-                <div class="h-96 bg-stone-800 mt-5 rounded-xl px-5 py-3">
+                <div class="h-96 bg-stone-800 mt-5 rounded-xl p-5">
                     <div class="text-xl font-medium">Friends</div>
                     <div class="flex flex-col overflow-y-auto h-5/6 mt-3">
 
 
                         <?php
                         foreach ($users as $user) {
+                            if ($user['id'] !== $_SESSION['user_id']) {
+
                         ?>
-                            <div class="py-3">
-                                <a href="" class="flex items-center">
-                                    <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-9 h-9 rounded-full">
-                                    <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
-                                </a>
-                            </div>
+                                <div class="py-3">
+                                    <a href="" class="flex items-center">
+                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="max-w-10 max-h-10 rounded-full">
+                                        <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
+                                    </a>
+                                </div>
                         <?php
+                            }
                         }
 
                         ?>

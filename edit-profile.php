@@ -112,7 +112,7 @@ if (!empty($_POST)) {
 
                         <form action="edit-profile.php" method="post" enctype="multipart/form-data" class="flex flex-col p-5">
                             <div class="flex flex-col">
-                                <img src="image/profile/<?php echo $user['profile_picture']; ?>" alt="" class="w-32 h-32 rounded-full mx-auto">
+                                <img src="image/profile/<?php echo $user['profile_picture']; ?>" alt="" class="w-32 h-32 object-cover rounded-full mx-auto">
                                 <input type="file" name="image" id="fileInput" class="hidden">
                                 <label for="fileInput" class="cursor-pointer  text-white rounded-lg p-2 mt-2 mx-auto text-center w-1/3">Edit Image</label>
                             </div>
