@@ -6,24 +6,11 @@ if (empty($_SESSION['user_id']) && empty($_SESSION['logged_in'])) {
     header("Location: login.php");
 };
 
-$stmtForPosts = $pdo->prepare("SELECT * FROM posts ORDER BY id DESC");
-$stmtForPosts->execute();
-$posts = $stmtForPosts->fetchAll(PDO::FETCH_ASSOC);
 
 $stmtUser = $pdo->prepare("SELECT * FROM users WHERE id=" . $_SESSION['user_id']);
 $stmtUser->execute();
 $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
-if (!empty($_POST['search'])) {
-    $search = $_POST['search'];
-    $stmtForUsers = $pdo->prepare("SELECT * FROM users WHERE name LIKE '%$search%'");
-    $stmtForUsers->execute();
-    $users = $stmtForUsers->fetchAll(PDO::FETCH_ASSOC);
-} else {
-    $stmtForUsers = $pdo->prepare("SELECT * FROM users ORDER BY id DESC");
-    $stmtForUsers->execute();
-    $users = $stmtForUsers->fetchAll(PDO::FETCH_ASSOC);
-}
 
 ?>
 
@@ -46,17 +33,31 @@ if (!empty($_POST['search'])) {
         <div class="flex w-full">
 
             <!-- main content start -->
-            <section class="w-3/4 ml-96 flex flex-col items-center">
-
-                <!-- header -->
-                <header class="text-center text-lg font-medium pt-5">For You</header>
+            <section class="w-3/5 ml-96 flex flex-col items-center">
 
                 <!-- posts -->
                 <div class="w-1/2">
 
+                    <!-- header -->
+                    <form action="search.php" method="post" class="mt-5">
+                        <div class="flex items-center h-max bg-stone-800 rounded-full px-3 py-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l5.6 5.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-5.6-5.6q-.75.6-1.725.95T9.5 16m0-2q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14" />
+                            </svg>
+                            <input type="search" name="search" class="w-full h-10 bg-stone-800 rounded-lg px-3 outline-none" placeholder="Search">
+                        </div>
+                    </form>
+
                     <!-- post -->
                     <?php
-                    if ($posts) {
+                    if (!empty($_POST['search'])) {
+
+                        $searchKey = "%" . $_POST['search'] . "%";
+                        $stmtForPosts = $pdo->prepare("SELECT * FROM posts WHERE status LIKE :searchKey ORDER BY id DESC");
+                        $stmtForPosts->bindValue(':searchKey', $searchKey);
+                        $stmtForPosts->execute();
+                        $posts = $stmtForPosts->fetchAll(PDO::FETCH_ASSOC);
+
                         foreach ($posts as $post) {
                             $user_stmt = $pdo->prepare("SELECT * FROM users WHERE id=" . $post['user_id']);
                             $user_stmt->execute();
@@ -144,47 +145,7 @@ if (!empty($_POST['search'])) {
             </section>
             <!-- main content end -->
 
-            <!-- second section start -->
-            <section class="w-1/4 pt-16 mr-28">
-                <form action="index.php" method="post">
-                    <div class="flex items-center h-max bg-stone-800 rounded-full px-3 py-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l5.6 5.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-5.6-5.6q-.75.6-1.725.95T9.5 16m0-2q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14" />
-                        </svg>
-                        <input type="search" name="search" class="w-full h-10 bg-stone-800 rounded-lg px-3 outline-none" placeholder="Search">
-                    </div>
-                </form>
 
-                <hr class="border-stone-500 mt-5">
-
-                <div class="h-96 bg-stone-800 mt-5 rounded-xl p-5">
-                    <div class="text-xl font-medium">Friends</div>
-                    <div class="flex flex-col overflow-y-auto h-5/6 mt-3">
-
-
-                        <?php
-                        foreach ($users as $user) {
-                            if ($user['id'] !== $_SESSION['user_id']) {
-
-                        ?>
-                                <div class="py-3">
-                                    <a href="" class="flex items-center">
-                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-10 h-10 rounded-full object-cover">
-                                        <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
-                                    </a>
-                                </div>
-                        <?php
-                            }
-                        }
-
-                        ?>
-                        <!-- user end -->
-
-                    </div>
-
-                </div>
-            </section>
-            <!-- second section end -->
 
         </div>
     </div>
