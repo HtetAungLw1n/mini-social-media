@@ -1,7 +1,7 @@
   <!-- navbar start -->
   <nav class="fixed w-60 inset-y-0 left-0 pl-5">
-      <div class="flex flex-col h-full justify-between py-5">
-          <div class="pl-3 text-lg font-medium"><a href="">Mini Social Media</a></div>
+      <div class="flex flex-col h-full justify-between py-7">
+          <div class="pl-3 text-xl font-medium"><a href="">Mini Social Media</a></div>
           <div>
               <ul>
                   <li class="py-3 pl-3 hover:bg-stone-800 rounded-lg transition duration-150">

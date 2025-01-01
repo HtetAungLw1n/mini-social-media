@@ -42,39 +42,39 @@ if (!empty($_POST)) {
 
 </head>
 
-<body class="h-screen">
+<body class="h-screen bg-stone-900">
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h1 class="text-center text-4xl/10 font-bold text-violet-600 tracking-wider">MINI SOCIAL MEDIA</h1>
-      <h2 class="text-center text-xl tracking-tight text-gray-900 mt-5">Sign up to your account</h2>
+      <h2 class="text-center text-xl tracking-tight text-gray-100 mt-5">Sign up to your account</h2>
     </div>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm bg-stone-800 p-6 rounded-lg shadow-md">
       <form class="space-y-6" action="sign-up.php" method="POST">
 
         <div>
-          <label for="name" class="block text-sm/6 font-medium text-gray-900">Your name</label>
+          <label for="name" class="block text-sm/6 font-medium text-gray-100">Your name</label>
           <div class="mt-2">
-            <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6" required>
+            <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
           </div>
         </div>
 
         <div>
-          <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+          <label for="email" class="block text-sm/6 font-medium text-gray-100">Email address</label>
           <div class="mt-2">
-            <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6" required>
+            <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
           </div>
         </div>
 
         <div>
-          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+          <label for="password" class="block text-sm/6 font-medium text-gray-100">Password</label>
           <div class="mt-2">
-            <input type="password" name="password" id="password" autocomplete="current-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6" required>
+            <input type="password" name="password" id="password" autocomplete="current-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
           </div>
         </div>
 
         <div>
-          <button type="submit" class="transition duration-100 mt-7 flex w-full justify-center rounded-md bg-violet-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-violet-700 hover:ease-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600">Sign up</button>
+          <button type="submit" class="transition duration-100 mt-10 flex w-full justify-center rounded-md bg-violet-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-violet-700 hover:ease-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600">Sign up</button>
         </div>
       </form>
 
@@ -85,7 +85,6 @@ if (!empty($_POST)) {
     </div>
   </div>
 
-  </div>
 </body>
 
 </html>
