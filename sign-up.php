@@ -3,29 +3,43 @@ session_start();
 require "./config/config.php";
 
 if (!empty($_POST)) {
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $profilePicture = 'defaultprofile.jpg';
-  $userRole = 0;
-
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE email=:email");
-  $stmt->bindValue(':email', $email);
-  $stmt->execute();
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  if ($user) {
-    echo "<script>alert('This email is already existed!');</script>";
+  if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || strlen($_POST['password']) < 4) {
+    if (empty($_POST['name'])) {
+      $nameError = '* Name is empty';
+    }
+    if (empty($_POST['email'])) {
+      $emailError = '* Email is empty';
+    }
+    if (empty($_POST['password'])) {
+      $passwordError = '* Password is empty';
+    } elseif (strlen($_POST['password']) < 4) {
+      $passwordError = '* Password must be at least 4';
+    }
   } else {
-    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $profilePicture = 'defaultprofile.jpg';
+    $userRole = 0;
 
-    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, profile_picture, role) VALUES (:name, :email, :password, :profilePicture, :role)");
-    $result = $stmt->execute(
-      array(':name' => $name, ':email' => $email, ':password' => $passwordHash, ':profilePicture' => $profilePicture, ':role' => $userRole)
-    );
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email=:email");
+    $stmt->bindValue(':email', $email);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result) {
-      echo "<script>alert('Account created successfully.');window.location.href = 'login.php';</script>";
+    if ($user) {
+      echo "<script>alert('This email is already existed!');</script>";
+    } else {
+      $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+      $stmt = $pdo->prepare("INSERT INTO users (name, email, password, profile_picture, role) VALUES (:name, :email, :password, :profilePicture, :role)");
+      $result = $stmt->execute(
+        array(':name' => $name, ':email' => $email, ':password' => $passwordHash, ':profilePicture' => $profilePicture, ':role' => $userRole)
+      );
+
+      if ($result) {
+        echo "<script>alert('Account created successfully.');window.location.href = 'login.php';</script>";
+      }
     }
   }
 }
@@ -55,22 +69,26 @@ if (!empty($_POST)) {
         <div>
           <label for="name" class="block text-sm/6 font-medium text-gray-100">Your name</label>
           <div class="mt-2">
-            <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
+            <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6">
+            <p class="text-sm text-red-500 mt-2"> <?php echo empty($nameError) ? "" : $nameError ?></p>
           </div>
         </div>
 
         <div>
           <label for="email" class="block text-sm/6 font-medium text-gray-100">Email address</label>
           <div class="mt-2">
-            <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
+            <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6">
+            <p class="text-sm text-red-500 mt-2"> <?php echo empty($emailError) ? "" : $emailError ?></p>
           </div>
         </div>
 
         <div>
           <label for="password" class="block text-sm/6 font-medium text-gray-100">Password</label>
           <div class="mt-2">
-            <input type="password" name="password" id="password" autocomplete="current-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6" required>
+            <input type="password" name="password" id="password" autocomplete="current-password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-stone-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-stone-600 sm:text-sm/6">
+            <p class="text-sm text-red-500 mt-2"> <?php echo empty($passwordError) ? "" : $passwordError ?></p>
           </div>
+
         </div>
 
         <div>
