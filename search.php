@@ -119,7 +119,7 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
                                 <!-- caption -->
                                 <p class="px-5 pb-3"><?php echo $post['status'] ?></p>
                                 <!-- image -->
-                                <a href="">
+                                <a href="post-detail.php?id=<?php echo $post['id'] ?>">
                                     <img src="./image/<?php echo $post['image'] ?>" alt="" class="max-w-full w-full max-h-[500px] object-cover">
                                 </a>
                                 <!-- like -->
