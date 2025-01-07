@@ -10,6 +10,19 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE id=" . $_SESSION['user_id']);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
+if (!empty($_POST['search'])) {
+    $search = $_POST['search'];
+    $stmtForUsers = $pdo->prepare("SELECT * FROM users WHERE name LIKE '%$search%'");
+    $stmtForUsers->execute();
+    $users = $stmtForUsers->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $stmtForUsers = $pdo->prepare("SELECT * FROM users ORDER BY id DESC");
+    $stmtForUsers->execute();
+    $users = $stmtForUsers->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 if (!empty($_POST)) {
 
     $status = $_POST['title'];
@@ -124,48 +137,22 @@ if (!empty($_POST)) {
                     <div class="flex flex-col overflow-y-auto h-5/6 mt-3">
 
                         <!-- user start -->
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
-                        <div class="py-3">
-                            <a href="" class="flex items-center">
-                                <img src="image/defaultprofile.jpg" alt="" class="w-9 h-9 rounded-full">
-                                <p class="text-lg font-medium ml-3">Username</p>
-                            </a>
-                        </div>
+                        <?php
+                        foreach ($users as $user) {
+                            if ($user['id'] !== $_SESSION['user_id']) {
+
+                        ?>
+                                <div class="py-3">
+                                    <a href="" class="flex items-center">
+                                        <img src="image/profile/<?php echo $user['profile_picture'] ?>" alt="" class="w-10 h-10 rounded-full object-cover">
+                                        <p class="text-lg font-medium ml-3"><?php echo $user['name'] ?></p>
+                                    </a>
+                                </div>
+                        <?php
+                            }
+                        }
+
+                        ?>
                         <!-- user end -->
 
                     </div>

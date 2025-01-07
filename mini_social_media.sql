@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2025 at 05:16 AM
+-- Generation Time: Jan 07, 2025 at 06:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,17 +34,6 @@ CREATE TABLE `comments` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `comment`, `post_id`, `user_id`, `created_at`) VALUES
-(1, 'testing', 25, 10, '2025-01-02 10:10:42'),
-(2, 'great', 25, 10, '2025-01-02 10:10:52'),
-(3, 'testing comment', 25, 11, '2025-01-02 10:16:26'),
-(4, 'nice watch', 28, 12, '2025-01-02 10:20:57'),
-(5, 'hi', 25, 12, '2025-01-02 10:22:08');
 
 -- --------------------------------------------------------
 
@@ -78,10 +67,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `status`, `image`, `user_id`, `created_at`, `edited_at`) VALUES
-(24, 'Hi This is me', '', 12, '2025-01-02 08:25:01', '2025-01-02 14:55:01'),
-(25, 'Hello Sweet Heart', 'Ada Wong.jpg', 13, '2025-01-02 08:30:00', '2025-01-02 15:00:00'),
-(26, 'The need', 'Melhores Perfumes Masculinos.jpg', 10, '2025-01-02 08:33:13', '2025-01-02 15:03:13'),
-(28, 'new year chilling', 'download.jpg', 11, '2025-01-02 08:36:30', '2025-01-02 15:06:30');
+(29, 'Hi welcome to Mini Social Media where the fun are.', '', 14, '2025-01-07 05:40:51', '2025-01-07 12:10:51');
 
 -- --------------------------------------------------------
 
@@ -104,10 +90,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `profile_picture`, `role`) VALUES
-(10, 'Hurricane', 'hurricane2@gmail.com', '$2y$10$hrRaNEHG6H1CyN1lTnggtOrTz1hctmf3wJwzUJgWnDcpMqhPwsijO', '2025-01-02 08:15:07', 'Yukimiya Kenyu.jpg', 0),
-(11, 'Htet Aung Lwin', 'htetaunglwin1@gmail.com', '$2y$10$P5lknqim3SmNjMbv4oKZxOH3PI/FWpYSxDJ74ksTJl6DO/OQLSfR.', '2025-01-02 08:17:16', 'itoshi sae.jpg', 0),
-(12, 'Gojo Satoru', 'gojo69@gmail.com', '$2y$10$rcfep0uC3FS0Ct56MipU9O2t/zr6cVZ2o2o6yXSHXN5FfTSt5J8Ka', '2025-01-02 08:20:55', 'gojo.jpg', 0),
-(13, 'Ada Wong', 'ada5@gmail.com', '$2y$10$KYl..QKlRDnYF/yenl20x.W4kRDBySb51xJCyKY3MFd78DU83Q1gi', '2025-01-02 08:25:40', 'ada.jpg', 0);
+(14, 'Htet Aung Lwin', 'hal@admin.com', '$2y$10$rzn1otHTYYNgh4wlD6L.2OzAj4hXOlh8s0T5EJz6AGU8lHD1qPlLS', '2025-01-07 05:39:07', 'Yukimiya Kenyu.jpg', 0);
 
 --
 -- Indexes for dumped tables
@@ -145,13 +128,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
